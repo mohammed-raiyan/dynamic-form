@@ -1,0 +1,22 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+li {
+  display: inline;
+  margin: 5px 10px 0 0;
+}
+
+li:hover {
+  margin: 5px 10px 0 0;
+  cursor: pointer;
+}
+
+.active {
+  font-weight: bold;
+}
