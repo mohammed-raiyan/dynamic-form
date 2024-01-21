@@ -1,0 +1,153 @@
+<mat-card
+  class="container p-4 mt-4 d-flex justify-content-center align-items-center"
+  [style]="
+    screenTitle === 'Employee data'
+      ? 'max-width: calc(50% - 16px)'
+      : 'max-width: calc(25% - 16px)'
+  "
+>
+  <mat-card-title>{{ screenTitle }}</mat-card-title>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div *ngFor="let section of formFields" class="section">
+      <mat-card-subtitle class="mb-2 text-left"
+        ><strong>{{ section.label }}</strong></mat-card-subtitle
+      >
+      <div
+        [class]="
+          screenTitle === 'Employee data'
+            ? 'row d-flex justify-content-center'
+            : ''
+        "
+      >
+        <ng-container class="form-element" *ngFor="let field of section.fields">
+          <div [class]="screenTitle === 'Employee data' ? 'col-md-6' : ''">
+            <ng-container [ngSwitch]="field.type">
+              <!-- Input Field Region -->
+              <div *ngSwitchCase="'text'">
+                <mat-form-field appearance="outline">
+                  <input
+                    matInput
+                    [formControlName]="field.name"
+                    [placeholder]="field.label"
+                    [type]="field.type || 'text'"
+                    [required]="field.validations?.isRequired"
+                    [pattern]="field.validations?.pattern"
+                  />
+                </mat-form-field>
+              </div>
+              <!-- Select Field Region-->
+              <div *ngSwitchCase="'select'">
+                <mat-form-field appearance="outline">
+                  <mat-label>{{ field.label }}</mat-label>
+                  <mat-select
+                    [formControlName]="field.name"
+                    [required]="field.validations?.isRequired"
+                  >
+                    <mat-option
+                      *ngFor="let option of field.options"
+                      [value]="option.value"
+                    >
+                      {{ option.label }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <!-- If Checkbox Field has multiple options then using multiselect check box else using simple check box -->
+              <div *ngSwitchCase="'checkbox'">
+                <ng-container *ngIf="field.options; else elsePart">
+                  <mat-form-field appearance="fill">
+                    <mat-label>{{ field.label }}</mat-label>
+                    <mat-select [formControlName]="field.name" multiple>
+                      <mat-option
+                        *ngFor="let option of field.options"
+                        [value]="option.value"
+                        >{{ option.label }}</mat-option
+                      >
+                    </mat-select>
+                  </mat-form-field>
+                </ng-container>
+                <ng-template #elsePart>
+                  <mat-checkbox [formControlName]="field.name">{{
+                    field.name
+                  }}</mat-checkbox>
+                </ng-template>
+              </div>
+
+              <!--Here I created Custom Check Which for multiple check box with single form which is also working fine..-->
+              <!--If you want you can un comment and use this then comment the above code-->
+              <!-- <div *ngSwitchCase="'checkbox'">
+          <mat-label>{{ field.label }} :</mat-label>
+          <app-dynamic-checkbox-list
+            [options]="field.options"
+            [formControlName]="field.name"
+          ></app-dynamic-checkbox-list>
+        </div> -->
+              <!-- Date Picker Field Region -->
+              <div *ngSwitchCase="'date'">
+                <mat-form-field>
+                  <mat-label>{{ field.label }}</mat-label>
+                  <input
+                    matInput
+                    [formControlName]="field.name"
+                    [matDatepicker]="picker"
+                    [required]="field.validations?.isRequired"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <!-- Radio Field Region-->
+              <div *ngSwitchCase="'radio'">
+                <mat-radio-group
+                  [formControlName]="field.name"
+                  [required]="field.validations?.isRequired"
+                >
+                  <div>{{ field.label }}</div>
+                  <mat-radio-button
+                    *ngFor="let option of field.options"
+                    [value]="option.value"
+                  >
+                    {{ option.label }}
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+
+              <!-- Password Field Region -->
+              <div *ngSwitchCase="'password'">
+                <mat-form-field appearance="outline">
+                  <input
+                    matInput
+                    [formControlName]="field.name"
+                    [placeholder]="field.label"
+                    [type]="field.type || 'password'"
+                    [required]="field.validations?.isRequired"
+                  />
+                </mat-form-field>
+              </div>
+            </ng-container>
+          </div>
+        </ng-container>
+        <h5
+          *ngIf="screenTitle !== 'Employee data'"
+          class="mb-2 mt-0"
+          style="color: red"
+        >
+          Hint: Please make form valid to proceed*
+        </h5>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button
+        mat-raised-button
+        [disabled]="form.invalid"
+        type="submit"
+        color="primary"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</mat-card>
