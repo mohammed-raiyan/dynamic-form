@@ -1,0 +1,7 @@
+<div [formGroup]="formGroup">
+  <div *ngFor="let option of options">
+    <mat-checkbox [formControlName]="option.value">{{
+      option.label
+    }}</mat-checkbox>
+  </div>
+</div>

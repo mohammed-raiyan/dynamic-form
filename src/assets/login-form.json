@@ -1,0 +1,25 @@
+{
+    "title": "Welcome To Shikshka Lokham",
+    "formFields": [
+        {
+            "fields": [
+                {
+                    "type": "text",
+                    "label": "Username",
+                    "name": "username",
+                    "validations": {
+                        "isRequired": true
+                    }
+                },
+                {
+                    "type": "password",
+                    "label": "Password",
+                    "name": "password",
+                    "validations": {
+                        "isRequired": true
+                    }
+                }
+            ]
+        }
+    ]
+}

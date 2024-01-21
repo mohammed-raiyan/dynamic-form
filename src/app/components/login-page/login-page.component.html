@@ -1,1 +1,8 @@
-<p>login-page works!</p>
+<div>
+  <!-- Added dynamic form component as child -->
+  <app-dynamic-form
+    [formType]="formType"
+    class="container-fluid"
+    (formDataSubmitted)="handleFormData($event)"
+  ></app-dynamic-form>
+</div>

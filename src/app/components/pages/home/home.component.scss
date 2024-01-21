@@ -1,0 +1,16 @@
+/* home.component.scss */
+.welcome-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Set to full viewport height for centering */
+  }
+  
+  h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #3498db; /* Set your desired text color */
+    text-align: center;
+  }
+  
