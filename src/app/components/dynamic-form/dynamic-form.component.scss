@@ -11,3 +11,15 @@ ul {
 .checkbox-div {
     margin: 12px 0;
   }
+
+  .res-mat-card {
+    max-width: calc(50% - 16px);
+  }
+  
+  @media (max-width: 767px) {
+    .res-mat-card {
+      max-width: 100%;
+    }
+  }
+
+

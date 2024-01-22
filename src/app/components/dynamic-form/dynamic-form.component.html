@@ -1,10 +1,5 @@
 <mat-card
-  class="container p-4 mt-4 d-flex justify-content-center align-items-center"
-  [style]="
-    screenTitle === 'Employee data'
-      ? 'max-width: calc(50% - 16px)'
-      : 'max-width: calc(25% - 16px)'
-  "
+  class="container p-4 mt-4 d-flex justify-content-center align-items-center res-mat-card"
 >
   <mat-card-title>{{ screenTitle }}</mat-card-title>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
