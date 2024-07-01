@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -9,7 +8,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [CommonModule, FormsModule, RouterModule, HttpClientModule],
+  imports: [CommonModule, FormsModule, RouterModule],
 })
 export class AppComponent {
   title = 'employee-form';

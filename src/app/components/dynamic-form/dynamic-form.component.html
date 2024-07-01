@@ -86,6 +86,7 @@
                     [formControlName]="field.name"
                     [matDatepicker]="picker"
                     [required]="field.validations?.isRequired"
+                    [max]="field.validations?.maxDate"
                   />
                   <mat-datepicker-toggle
                     matSuffix
