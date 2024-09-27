@@ -32,6 +32,7 @@ export class DynamicFormComponent implements OnInit {
   dynamicForm = this.fb.group({});
   formFields!: any;
   screenTitle: string = '';
+  currentDate = Date.now();
 
   constructor(
     private dynamicFormService: DynamicFormService,
@@ -85,6 +86,10 @@ export class DynamicFormComponent implements OnInit {
     if (validations?.pattern) {
       const pattern = validations?.pattern;
       validators.push(Validators.pattern(pattern));
+    }
+    if (validations?.maxDate) {
+      const matDate = validations?.maxDate ? this.currentDate:Infinity ;
+      validators.push(Validators.max(matDate));
     }
     // Add more validators as needed
     return validators;

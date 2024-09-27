@@ -15,6 +15,7 @@ export interface ValidatorJSON {
   min: number;
   max?: number;
   pattern?: string;
+  maxDate?: boolean;
 }
 
 export interface OptionJSON {

@@ -29,7 +29,8 @@
                     "label": "Date of Birth",
                     "name": "dob",
                     "validations": {
-                        "isRequired": true
+                        "isRequired": true,
+                        "maxDate": true
                     }
                 },
                 {
